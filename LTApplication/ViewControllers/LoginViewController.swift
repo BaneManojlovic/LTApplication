@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseInstanceID
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     // MARK: - Outlets
 
@@ -67,6 +67,7 @@ class LoginViewController: UIViewController {
             debugPrint("ERROR: No login request")
             return
         }
+        showProgressHUD()
         APIManager.default.login(
             requestModel: loginRequest,
             success: loginSuccess,
@@ -79,7 +80,7 @@ class LoginViewController: UIViewController {
         (user, message) in
         
         guard let strongSelf = self else { return }
-        
+        strongSelf.hideProgressHUD()
         guard let user = user else {
 //            strongSelf.showDialog(message: message ?? L10n.errorMsgUnableToLogIn, handler: nil)
             print("Unable to login")

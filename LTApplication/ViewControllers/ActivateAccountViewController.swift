@@ -68,10 +68,8 @@ class ActivateAccountViewController: UIViewController {
                                                         userInfo: [UserInfoKey.user: user])
                     })
                 } else {
-//                    let profileVC = StoryboardScene.Login.profileViewController.instantiate()
-//                    profileVC.user = user
-//                    profileVC.origin = .activateAccount
-//                    strongSelf.navigationController?.pushViewController(profileVC, animated: true)
+                    let profileVC = StoryboardScene.Auth.homeViewController.instantiate()
+                    strongSelf.navigationController?.pushViewController(profileVC, animated: true)
                 }
             },   failure: { [weak self] error in
                 guard let strongSelf = self else { return }

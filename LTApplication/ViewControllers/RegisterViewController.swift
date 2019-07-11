@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     
     // MARK: - Outlets
     
@@ -84,9 +84,11 @@ class RegisterViewController: UIViewController {
             debugPrint("Unable to create request model")
             return
         }
+        showProgressHUD()
         APIManager.default.register(
             requestModel: requestModel,
             success: { [weak self] in
+                self?.hideProgressHUD()
                 let activateVC = StoryboardScene.Auth.activateAccountViewController.instantiate()
                 activateVC.loginRequest = LoginRequestModel(from: requestModel)
                 self?.navigationController?.pushViewController(activateVC, animated: true)
